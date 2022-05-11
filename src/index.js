@@ -1,4 +1,5 @@
 import shuffle from "./shuffle";
+import throwConfetti from "./confetti";
 import generateGame from "./game";
 const playerDiv = document.querySelector("#player .numbers");
 const computerDiv = document.querySelector("#computer .numbers");
@@ -59,14 +60,14 @@ function checkNumber(number) {
     playerNumbers = playerNumbers.filter(n => n !== number);
     if (playerNumbers.length === 0) {
       playing = false;
-      console.log("Has ganado"); // TODO: confeti
+      winnerDialog(true);
     }
   }
   if (computerNumbers.includes(number)) {
     computerNumbers = computerNumbers.filter(n => n !== number);
     if (computerNumbers.length === 0) {
       playing = false;
-      console.log("Has perdido"); // TODO: confeti
+      winnerDialog(false);
     }
   }
 }
@@ -85,4 +86,22 @@ function cellElement(n) {
     cell.textContent = n;
   }
   return cell;
+}
+
+// Muestra un modal de ganador
+function winnerDialog(winner) {
+  const el = document.createElement("div");
+  el.id = "finnish";
+  el.innerHTML = `
+    <div class="dialog">
+      <h2>${winner ? "Felicidades ¡Has ganado!" : "Ha, ¡Perdedor!"}</h2>
+      <img class="${winner ? "winner" : "loser"}" src="./assets/${winner ? "winner.gif" : "loser.png"}" alt="${winner ? "Ganaste" : "Perdiste"}">
+      <button>Jugar de nuevo</button>
+    </div>
+  `;
+  el.querySelector("button").addEventListener("click", () => {
+    location.reload();
+  });
+  document.body.appendChild(el);
+  throwConfetti();
 }

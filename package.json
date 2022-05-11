@@ -27,5 +27,8 @@
     "vite": "^2.9.5"
   },
   "keywords": [],
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "canvas-confetti": "^1.5.1"
+  }
 }

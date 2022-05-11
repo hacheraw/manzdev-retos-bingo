@@ -4,6 +4,7 @@ body {
   padding: 0;
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
 }
 
 * {
@@ -13,7 +14,7 @@ body {
 :root {
   --cell-size: 32px;
   --drum-size: 240px;
-  --gap: 3rem;
+  --gap: 1rem;
 }
 
 body {
@@ -110,7 +111,7 @@ body {
       align-items: flex-start;
       align-self: flex-start;
       gap: var(--gap);
-      padding: 2rem;
+      padding: var(--gap);
 
       & .cell {
         display: flex;
@@ -123,13 +124,70 @@ body {
       }
     }
   }
+
+  & #finnish {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    overflow: hidden;
+
+    & .dialog {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      max-width: 90%;
+      gap: 1rem;
+      background-color: #eee;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+
+      & h2 {
+        font-size: 2rem;
+        margin: 0;
+      }
+
+      & img {
+        width: 100%;
+
+        &.loser {
+          position: absolute;
+          z-index: -1;
+          bottom: 0;
+          right: 0;
+          width: 500px;
+          max-width: 50%;
+        }
+      }
+
+      & button {
+        color: #fff;
+        padding: 0.5rem 1rem;
+        border: 2px solid #54090d;
+        border-radius: 0.5rem;
+        background-color: #54090d;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+          background-color: #fff;
+          color: #54090d;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 1200px) {
   :root {
     --cell-size: 24px;
     --drum-size: 180px;
-    --gap: 1rem;
   }
 
   body .top {
