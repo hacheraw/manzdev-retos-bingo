@@ -1,3 +1,5 @@
+import shuffle from "./shuffle";
+
 // Genera un cartón de X filas, Y columnas y Z huecos por fila
 function generateCard(rowsNumber = 3, columnsNumber = 9, gapsPerRow = 4) {
   const columns = [];
@@ -27,7 +29,7 @@ function generateCard(rowsNumber = 3, columnsNumber = 9, gapsPerRow = 4) {
 
 // Genera los huecos en un cartón
 function generateGaps(rows, rowsNumber, columnsNumber, gapsPerRow) {
-  const rowsWithGaps = []; // Aquí se guardarán los gaps de cada fila
+  let rowsWithGaps = []; // Aquí se guardarán los gaps de cada fila
   let positions = [...Array(columnsNumber).keys()]; // Del 0 al 8
   let gap = 0; // Posición del hueco
   for (let i = 0; i < rowsNumber; i++) {
@@ -47,6 +49,8 @@ function generateGaps(rows, rowsNumber, columnsNumber, gapsPerRow) {
     }
     rowsWithGaps.push(rowGaps);
   }
+
+  rowsWithGaps = shuffle(rowsWithGaps); // Para hacer un poco más aleatorio
 
   for (let i = 0; i < rowsNumber; i++) {
     for (let j = 0; j < gapsPerRow; j++) {

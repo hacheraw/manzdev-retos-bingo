@@ -87,6 +87,8 @@ function cellElement(n) {
   if (n !== null) {
     cell.classList.add("cell", `number-${n}`);
     cell.textContent = n;
+  } else {
+    cell.classList.add("gap");
   }
   return cell;
 }
