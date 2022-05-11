@@ -1,6 +1,9 @@
 import shuffle from "./shuffle";
 import throwConfetti from "./confetti";
 import generateGame from "./game";
+import winnerImg from "./assets/winner.gif";
+import loserImg from "./assets/loser.png";
+
 const playerDiv = document.querySelector("#player .numbers");
 const computerDiv = document.querySelector("#computer .numbers");
 const drumDiv = document.getElementById("drum");
@@ -95,7 +98,7 @@ function winnerDialog(winner) {
   el.innerHTML = `
     <div class="dialog">
       <h2>${winner ? "Felicidades ¡Has ganado!" : "Ha, ¡Perdedor!"}</h2>
-      <img class="${winner ? "winner" : "loser"}" src="./assets/${winner ? "winner.gif" : "loser.png"}" alt="${winner ? "Ganaste" : "Perdiste"}">
+      <img class="${winner ? "winner" : "loser"}" src="${winner ? winnerImg : loserImg}" alt="${winner ? "Ganaste" : "Perdiste"}">
       <button>Jugar de nuevo</button>
     </div>
   `;
